@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Click Counter</title>
+    <!-- Outfit Font for a premium typography look -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --primary: #6366f1;
+            --primary-glow: rgba(99, 102, 241, 0.5);
+            --secondary: #a855f7;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-primary);
+            overflow: hidden;
+        }
+
+        .container {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            padding: 3rem 2rem;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #a855f7, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+        }
+
+        .counter-box {
+            margin-bottom: 2rem;
+        }
+
+        .counter-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .counter-value {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1;
+            transition: transform 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-block;
+        }
+
+        /* Scale-up animation class applied via JS on click */
+        .counter-value.pop {
+            transform: scale(1.25);
+            color: #c084fc;
+        }
+
+        .btn {
+            font-family: inherit;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            outline: none;
+            box-shadow: 0 8px 24px var(--primary-glow);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(168, 85, 247, 0.6);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 4px 12px var(--primary-glow);
+        }
+
+        /* Subtle background glow element */
+        .ambient-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0,0,0,0) 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient-glow"></div>
+    <div class="container">
+        <h1 class="title">Interactive Counter</h1>
+        <p class="subtitle">Click the button below to increment</p>
+
+        <div class="counter-box">
+            <span class="counter-label">Total Clicks</span>
+            <span class="counter-value" id="counter">0</span>
+        </div>
+
+        <button class="btn" id="clickBtn">Click Me!</button>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        const btn = document.getElementById('clickBtn');
+        const counter = document.getElementById('counter');
+        let count = 0;
+
+        btn.addEventListener('click', () => {
+            // 1. Increment the click count
+            count++;
+            
+            // 2. Update the counter text
+            counter.textContent = count;
+
+            // 3. Trigger a scale-up animation effect
+            counter.classList.add('pop');
+            setTimeout(() => {
+                counter.classList.remove('pop');
+            }, 100);
+        });
+    </script>
+</body>
+</html>
