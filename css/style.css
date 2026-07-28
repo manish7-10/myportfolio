@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: #0b0f19; /* Deeper midnight background for richer contrast */
+    background-color: #0b0f19;
     font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
     color: #cbd5e1;
     line-height: 1.7;
@@ -43,7 +43,6 @@ h2 {
     position: relative;
 }
 
-/* Graphic Design Element: Clean accent dot under headers */
 h2::after {
     content: '';
     position: absolute;
@@ -147,7 +146,7 @@ nav a:hover {
     color: #38bdf8;
 }
 
-/* --- Section Containers (Premium Cards) --- */
+/* --- Section Containers --- */
 section {
     background: linear-gradient(145deg, #1e293b 0%, #111827 100%);
     padding: 3rem;
@@ -159,7 +158,6 @@ section {
     overflow: hidden;
 }
 
-/* Subtle graphic ambient glow element inside cards */
 section::before {
     content: '';
     position: absolute;
@@ -176,7 +174,7 @@ section:hover::before {
     opacity: 1;
 }
 
-/* About Section Layout */
+/* About Section */
 #about {
     display: flex;
     justify-content: space-between;
@@ -194,7 +192,7 @@ section:hover::before {
     width: 210px;
     height: 210px;
     object-fit: cover;
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; /* Organic graphic shape shifting */
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
     border: 3px solid #38bdf8;
     box-shadow: 0 15px 35px rgba(56, 189, 248, 0.15);
     animation: morphProfile 8s ease-in-out infinite alternate;
@@ -205,7 +203,7 @@ section:hover::before {
     100% { border-radius: 50% 50% 30% 70% / 50% 60% 40% 50%; }
 }
 
-/* Technical Skills Layout */
+/* Technical Skills */
 dl {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -238,7 +236,7 @@ dd {
     font-size: 0.95rem;
 }
 
-/* --- Projects Section Layout --- */
+/* --- Projects Section --- */
 #projects {
     display: flex;
     flex-direction: column;
@@ -277,7 +275,7 @@ dd {
     text-decoration: underline;
 }
 
-/* --- Forms (Contact Layout) --- */
+/* --- Contact Section --- */
 #contact form {
     display: flex;
     flex-direction: column;
@@ -334,7 +332,7 @@ dd {
     transform: translateY(-2px);
 }
 
-/* --- Footer & Enhanced Social Branding --- */
+/* --- Footer & Social Icons --- */
 footer {
     background: #070a12;
     border-top: 1px solid rgba(51, 65, 85, 0.5);
@@ -357,7 +355,7 @@ footer {
     justify-content: center;
     width: 46px;
     height: 46px;
-    border-radius: 12px; /* Smooth rounded squircle layout modern graphics look */
+    border-radius: 12px;
     background: #1e293b;
     border: 1px solid rgba(51, 65, 85, 0.6);
 }
@@ -369,7 +367,6 @@ footer {
     box-shadow: 0 8px 20px rgba(56, 189, 248, 0.25);
 }
 
-/* Custom specific brand accents on icon hovering */
 .social-icon[aria-label="LinkedIn"]:hover { background: #0077B5; border-color: #0077B5; }
 .social-icon[aria-label="GitHub"]:hover { background: #24292e; border-color: #24292e; }
 .social-icon[aria-label="Instagram"]:hover { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); border-color: transparent; }
@@ -378,9 +375,149 @@ footer p {
     color: #475569;
     font-size: 0.85rem;
     letter-spacing: 0.02em;
+    margin-top: 2rem;
 }
 
-/* Responsive adjustment for Mobile screens */
+/* =====================================================
+   FOOTER ADVENTURE GALLERY SLIDER
+   ===================================================== */
+.footer-gallery {
+    width: 100%;
+    max-width: 900px;
+    margin: 60px auto 0;
+    padding: 0 20px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.footer-gallery::before {
+    display: none;
+}
+
+.footer-gallery-title {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 25px;
+}
+
+.slider {
+    position: relative;
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.slider__window {
+    position: relative;
+    width: 100%;
+    height: 440px;
+    overflow: hidden;
+    border-radius: 18px;
+    background: #0f172a;
+    border: 1px solid rgba(51, 65, 85, 0.8);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.slider__track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+}
+
+.slider__slide {
+    flex-shrink: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.slider__slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.slider:hover .slider__slide img {
+    transform: scale(1.02);
+}
+
+/* Glassmorphic Arrows */
+.slider__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #fff;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    opacity: 0.85;
+}
+
+.slider:hover .slider__arrow {
+    opacity: 1;
+}
+
+.slider__arrow:hover {
+    background: #38bdf8;
+    color: #0f172a;
+    border-color: #38bdf8;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+}
+
+.slider__arrow--prev { left: 18px; }
+.slider__arrow--next { right: 18px; }
+
+/* Custom Capsule Indicators */
+.slider__dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.slider__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 20px;
+    border: none;
+    background: #334155;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slider__dot:hover {
+    background: #64748b;
+}
+
+.slider__dot.is-active {
+    width: 28px;
+    background: #38bdf8;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+}
+
+/* --- Responsive Layout Rules --- */
+@media (max-width: 900px) {
+    .slider__window {
+        height: 350px;
+    }
+}
+
 @media (max-width: 768px) {
     main {
         margin: 2rem auto;

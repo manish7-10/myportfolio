@@ -1,0 +1,457 @@
+/* =======================================================
+   PREMIUM IMAGE SLIDER
+=======================================================*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+    background:#070b18;
+
+    color:#fff;
+
+    position:relative;
+}
+
+
+/*==========================
+Animated Background
+==========================*/
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    width:700px;
+    height:700px;
+
+    background:radial-gradient(circle,#00d4ff55,transparent 70%);
+
+    top:-250px;
+    left:-200px;
+
+    animation:blob1 14s infinite alternate ease-in-out;
+
+    z-index:-2;
+
+}
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    width:650px;
+    height:650px;
+
+    background:radial-gradient(circle,#ff006e55,transparent 70%);
+
+    right:-200px;
+    bottom:-220px;
+
+    animation:blob2 15s infinite alternate ease-in-out;
+
+    z-index:-2;
+
+}
+
+@keyframes blob1{
+
+    from{
+        transform:translate(0,0) scale(1);
+    }
+
+    to{
+        transform:translate(120px,80px) scale(1.3);
+    }
+
+}
+
+@keyframes blob2{
+
+    from{
+        transform:translate(0,0) scale(1);
+    }
+
+    to{
+        transform:translate(-120px,-70px) scale(1.2);
+    }
+
+}
+
+/*==========================
+Particles
+==========================*/
+
+.page{
+
+    position:relative;
+
+    width:100%;
+
+    max-width:1000px;
+
+    padding:40px;
+
+}
+
+.page::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background-image:
+
+    radial-gradient(#ffffff25 1px,transparent 1px);
+
+    background-size:32px 32px;
+
+    opacity:.4;
+
+    pointer-events:none;
+
+}
+
+/*==========================
+Title
+==========================*/
+
+.page-title{
+
+    text-align:center;
+
+    font-size:2.2rem;
+
+    font-weight:700;
+
+    margin-bottom:35px;
+
+    letter-spacing:1px;
+
+    background:linear-gradient(90deg,#00d4ff,#ffffff,#ff006e);
+
+    -webkit-background-clip:text;
+
+    color:transparent;
+
+}
+
+/*==========================
+Slider Window
+==========================*/
+
+.slider__window{
+
+    position:relative;
+
+    width:100%;
+
+    aspect-ratio:16/9;
+
+    overflow:hidden;
+
+    border-radius:28px;
+
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    box-shadow:
+
+    0 30px 80px rgba(0,0,0,.55),
+
+    inset 0 1px 1px rgba(255,255,255,.2);
+
+}
+
+/*==========================
+Track
+==========================*/
+
+.slider__track{
+
+    display:flex;
+
+    height:100%;
+
+    transition:transform .7s cubic-bezier(.22,.61,.36,1);
+
+}
+
+/*==========================
+Slides
+==========================*/
+
+.slider__slide{
+
+    flex:0 0 100%;
+
+    overflow:hidden;
+
+}
+
+.slider__slide img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    transition:transform 8s ease;
+
+}
+
+.slider__slide:hover img{
+
+    transform:scale(1.12);
+
+}
+
+/*==========================
+Dark Overlay
+==========================*/
+
+.slider__window::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+
+    to top,
+
+    rgba(0,0,0,.45),
+
+    transparent 45%,
+
+    rgba(255,255,255,.04)
+
+    );
+
+    pointer-events:none;
+
+}
+
+/*==========================
+Arrows
+==========================*/
+
+.slider__arrow{
+
+    position:absolute;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    width:58px;
+
+    height:58px;
+
+    border:none;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    background:rgba(255,255,255,.12);
+
+    color:#fff;
+
+    backdrop-filter:blur(15px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    transition:.35s;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+
+    z-index:20;
+
+}
+
+.slider__arrow:hover{
+
+    background:#00d4ff;
+
+    transform:translateY(-50%) scale(1.1);
+
+    box-shadow:0 0 25px #00d4ff;
+
+}
+
+.slider__arrow:active{
+
+    transform:translateY(-50%) scale(.9);
+
+}
+
+.slider__arrow--prev{
+
+    left:25px;
+
+}
+
+.slider__arrow--next{
+
+    right:25px;
+
+}
+
+/*==========================
+Dots
+==========================*/
+
+.slider__dots{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:14px;
+
+    margin-top:28px;
+
+}
+
+.slider__dot{
+
+    width:13px;
+
+    height:13px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#ffffff40;
+
+    cursor:pointer;
+
+    transition:.4s;
+
+}
+
+.slider__dot:hover{
+
+    transform:scale(1.3);
+
+}
+
+.slider__dot.is-active{
+
+    width:36px;
+
+    border-radius:30px;
+
+    background:linear-gradient(90deg,#00d4ff,#4facfe);
+
+    box-shadow:
+
+    0 0 15px #00d4ff;
+
+}
+
+/*==========================
+Floating Glow
+==========================*/
+
+.slider__window::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+
+    height:180px;
+
+    background:radial-gradient(circle,#00d4ff55,transparent);
+
+    top:-60px;
+
+    right:-40px;
+
+    filter:blur(20px);
+
+    animation:rotateGlow 12s linear infinite;
+
+}
+
+@keyframes rotateGlow{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/*==========================
+Responsive
+==========================*/
+
+@media(max-width:768px){
+
+.page{
+
+padding:20px;
+
+}
+
+.page-title{
+
+font-size:1.6rem;
+
+}
+
+.slider__arrow{
+
+width:46px;
+
+height:46px;
+
+}
+
+.slider__window{
+
+border-radius:20px;
+
+}
+
+}
